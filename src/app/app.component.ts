@@ -16,6 +16,8 @@ export class AppComponent {
   isEditable: boolean;
   // Objet utilisé pour regrouper les classes CSS (en lien avec ngClass)
   classesBtn: object;
+  // Objet utilisé pour regrouper les propriétés CSS inline d'un paragraphe
+  objStyle: object;
 
   /**
    * Appelé à la construction du component
@@ -27,10 +29,12 @@ export class AppComponent {
     give you a complete account of the system, and expound the actual
     teachings of the great explorer !`;
     this.url = 'https://www.ecosia.org/';
-    this.isEditable = false;
+    this.isEditable = true;
 
-    // Initialisation des classes CSS "blue-grey" et "brown" du bouton (pour ngClass)
-    this.updateClasseBtn();
+    // Initialisation :
+    // - des classes CSS "blue-grey" et "brown" du bouton (pour ngClass)
+    // - du style inline
+    this.updateClassesAndStyles();
   }
 
   /**
@@ -47,16 +51,20 @@ export class AppComponent {
     }
 
     // Mise à jour des classes CSS du bouton
-    this.updateClasseBtn();
+    this.updateClassesAndStyles();
   }
 
   /**
    * Initialisation/Met à jour les classes CSS gérant la couleur du bouton
    */
-  private updateClasseBtn() {
+  private updateClassesAndStyles() {
     this.classesBtn = {
       'blue-grey' : this.isEditable,
       'brown'     : !this.isEditable
+    };
+    this.objStyle = {
+      'color'       : this.isEditable ? 'chocolate' : 'royalblue',
+      'border-left' : !this.isEditable ? '4px solid royalblue' : 'none'
     };
   }
 }
