@@ -1,1 +1,25 @@
-<h2>Liste des produits</h2>
+<section class="container">
+    <h2>Liste des produits</h2>
+    <ul class="collection with-header">
+        <li *ngFor="let product of products" class="collection-item">
+            <div>
+                {{ product.name }}
+                <a href="#!" class="secondary-content">
+                    <i class="material-icons">send</i>
+                </a>
+            </div>
+        </li>
+    </ul>
+
+    <!-- Block if -->
+    <article *ngIf="selectedProduct; else blockNoSelection">
+        <h3>Détail du produit</h3>
+        <p>nom, description, prix, ...</p>
+    </article>
+
+    <!-- Block else -->
+    <ng-template #blockNoSelection>
+        <p>Pas de produit sélectionné</p>
+    </ng-template>
+
+</section>
