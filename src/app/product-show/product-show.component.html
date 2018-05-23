@@ -1,0 +1,13 @@
+
+<!-- Block if -->
+<article *ngIf="product; else blockNoSelection">
+    <h3>Détail du produit</h3>
+    <h4>{{ product.name }}</h4>
+    <p>{{ product.description }}</p>
+
+</article>
+
+<!-- Block else -->
+<ng-template #blockNoSelection>
+    <p>Pas de produit sélectionné</p>
+</ng-template>

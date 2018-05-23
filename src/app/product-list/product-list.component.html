@@ -5,22 +5,13 @@
         <li *ngFor="let product of products; let i=index" class="collection-item">
             <div>
                 {{ i }} - {{ product.name }}
-                <a href="#!" class="secondary-content">
+                <a (click)="selectedProduct=product;" class="secondary-content">
                     <i class="material-icons">send</i>
                 </a>
             </div>
         </li>
     </ul>
 
-    <!-- Block if -->
-    <article *ngIf="selectedProduct; else blockNoSelection">
-        <h3>Détail du produit</h3>
-        <p>nom, description, prix, ...</p>
-    </article>
-
-    <!-- Block else -->
-    <ng-template #blockNoSelection>
-        <p>Pas de produit sélectionné</p>
-    </ng-template>        
+    <app-product-show [product]="selectedProduct"></app-product-show>
 
 </section>
