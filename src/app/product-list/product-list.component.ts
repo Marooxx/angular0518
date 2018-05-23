@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Product, PRODUCT_TEST, TAB_PRODUCTS } from '../model/product';
+import { Product, TAB_PRODUCTS } from '../model/product';
 
 @Component({
   selector: 'app-product-list',
@@ -13,6 +13,10 @@ export class ProductListComponent {
   // Produit sélectionné (null par défaut)
   public selectedProduct: Product;
 
+  // Propriétés pour la moyenne
+  private moyenne: number;
+  private notes;
+
   constructor() {
     // Initialisation le tableau de produits
     this.products = TAB_PRODUCTS;
@@ -20,8 +24,21 @@ export class ProductListComponent {
     // this.products = [];
     // this.products = null;
 
-    // On automatisera la sélection du produit ASAP
-    // this.selectedProduct = PRODUCT_TEST;
+    // Initialisation de la moyenne
+    this.moyenne = 0;
+    this.notes = [];
+  }
+
+  private updateMoyenne(newNote: number): void {
+    console.log('Nouvelle note reçue : ' + newNote);
+    this.calculateMoyenne(newNote);
+  }
+
+  private calculateMoyenne(note: number): void {
+    let somme = 0;
+    this.notes.push(note);
+    this.notes.forEach((elem) => somme += parseInt(elem, 10));
+    this.moyenne = somme / this.notes.length;
   }
 
 }

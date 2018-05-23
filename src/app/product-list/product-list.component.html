@@ -12,6 +12,10 @@
         </li>
     </ul>
 
-    <app-product-show [product]="selectedProduct"></app-product-show>
+    <p class="flow-text">Moyenne des votes : {{ moyenne }}</p>
+
+    <app-product-show 
+        [product]="selectedProduct" (voted)="updateMoyenne($event)"
+    ></app-product-show>
 
 </section>
