@@ -16,6 +16,10 @@ export class ProductListComponent {
   constructor() {
     // Initialisation le tableau de produits
     this.products = TAB_PRODUCTS;
+    // Si on veut un tableau vide
+    // this.products = [];
+    // this.products = null;
+
     // On automatisera la sélection du produit ASAP
     // this.selectedProduct = PRODUCT_TEST;
   }

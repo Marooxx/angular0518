@@ -8,16 +8,18 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 export class AppComponent {
   // Propriétés pour tester l'affichage de propriétés dans le template
-  title = `Bienvenue sur ma page d'accueil`;
-  content: string;
+  private title = `Bienvenue sur ma page d'accueil`;
+  private content: string;
   // Pour changer l'attribut d'une balise HTML
-  url: string;
+  private url: string;
   // Booléen utilisé pour changer le style (classes CSS, style inline)
-  isEditable: boolean;
+  private isEditable: boolean;
   // Objet utilisé pour regrouper les classes CSS (en lien avec ngClass)
-  classesBtn: object;
+  private classesBtn: object;
   // Objet utilisé pour regrouper les propriétés CSS inline d'un paragraphe
-  objStyle: object;
+  private objStyle: object;
+  // Météo : pour tester le ngSwitch
+  private meteo: string;
 
   /**
    * Appelé à la construction du component
@@ -35,6 +37,9 @@ export class AppComponent {
     // - des classes CSS "blue-grey" et "brown" du bouton (pour ngClass)
     // - du style inline
     this.updateClassesAndStyles();
+
+    // On initialise la météo
+    this.meteo = 'ensoleillé';
   }
 
   /**

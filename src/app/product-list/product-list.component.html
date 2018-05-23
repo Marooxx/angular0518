@@ -1,9 +1,10 @@
-<section class="container">
+<section class="container" *ngIf="products.length">
+
     <h2>Liste des produits</h2>
     <ul class="collection with-header">
-        <li *ngFor="let product of products" class="collection-item">
+        <li *ngFor="let product of products; let i=index" class="collection-item">
             <div>
-                {{ product.name }}
+                {{ i }} - {{ product.name }}
                 <a href="#!" class="secondary-content">
                     <i class="material-icons">send</i>
                 </a>
@@ -20,6 +21,6 @@
     <!-- Block else -->
     <ng-template #blockNoSelection>
         <p>Pas de produit sélectionné</p>
-    </ng-template>
+    </ng-template>        
 
 </section>
