@@ -1,0 +1,39 @@
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">
+    <br><br>
+    <h1 class="header center teal-text" 
+      [style.display]="isEditable ? 'block' : 'none'">{{title}}</h1>
+    <div class="row center">
+      <h5 class="header col s12 light" [attr.contenteditable]="isEditable">
+        {{ content }}
+      </h5>
+    </div>
+    <div class="row center">
+      <button class="btn-large" (click)="changeStyle()" [ngClass]="classesBtn">Changer le style</button>
+
+      <a id="download-button" class="btn-large waves-effect waves-light"
+       [href]="url" >Moteur de recherche</a>
+    </div>
+
+    <div class="row center flow-text">
+      <p [ngStyle]="objStyle">Ceci est un paragraphe que je veux stylisé avec ngStyle (directive d'attribut)</p>
+    </div>
+
+    <div class="row center flow-text">
+      
+      <p>Bilan sur la météo : 
+        <ng-container [ngSwitch]="meteo">
+          <ng-container *ngSwitchCase="'ensoleillé'">il fait beau</ng-container>
+          <ng-container *ngSwitchCase="'nuageux'">il va bientôt pleuvoir</ng-container>
+          <ng-container *ngSwitchCase="'pluvieux'">il pleut</ng-container>
+          <ng-container *ngSwitchCase="'tempête'">fuyez !</ng-container>
+          <ng-container *ngSwitchDefault>impossible à déterminer</ng-container>
+        </ng-container>
+      </p>
+
+    </div>
+    
+    <br><br>
+
+  </div>
+</div>
