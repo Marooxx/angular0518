@@ -12,6 +12,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
 import { ProductShowComponent } from './product-show/product-show.component';
 import { HomeComponent } from './home/home.component';
+import { Error404Component } from './errors/error404/error404.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HomeComponent } from './home/home.component';
     ProductListComponent,
     ProductEditComponent,
     ProductShowComponent,
-    HomeComponent
+    HomeComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,

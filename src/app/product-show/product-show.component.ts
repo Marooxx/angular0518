@@ -1,37 +1,51 @@
 // Modules d'angular
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 // Modèle perso
 import { Product, TAB_PRODUCTS } from '../model/product';
-import { isNavigationCancelingError } from '@angular/router/src/shared';
 
 @Component({
   selector: 'app-product-show',
   templateUrl: './product-show.component.html',
   styleUrls: ['./product-show.component.css']
 })
-export class ProductShowComponent {
+export class ProductShowComponent implements OnInit {
 
   // Propriété entrante passée par le parent
   @Input()  private product: Product;
   // Evenement sortant pour le parent
   @Output() private voted: EventEmitter<number>;
 
+  // On stocke le routeur et le route pour les utiliser où on veut dans la classe
+  private router: Router;
+  private route: ActivatedRoute;
+
   constructor(
-    route: ActivatedRoute
+    route: ActivatedRoute,
+    router: Router
   ) {
+    // On stocke le router dans la classe
+    this.router = router;
+    // On stocke la route active dans la classe
+    this.route = route;
+
     // Initialisation de l'événément pour le parent
     this.voted = new EventEmitter<number>();
+  }
 
+  /**
+   * Fonction qui se déclenche lorsque le traitement du constructeur est terminé
+   */
+  ngOnInit(): void {
     // Récupération de l'id passé en paramètre de la route
-    const id: number = parseInt(route.snapshot.paramMap.get('id'), 10);
+    const id: number = parseInt(this.route.snapshot.paramMap.get('id'), 10);
     console.log(`Le nombre correspondant à l'id passé dans la route est : ${id}`);
 
     if (!isNaN(id)) {
       this.getProduct(id);
     } else {
-      throw new Error(`L'id passé est incorrecte.`);
+      this.router.navigate(['/not-found']);
     }
   }
 
@@ -66,7 +80,7 @@ export class ProductShowComponent {
     if (tableauTrie.length === 1) {
       this.product = tableauTrie[0];
     } else {
-      throw new Error('Produit non-trouvé (ou plusieurs)');
+      this.router.navigate(['/not-found']);
     }
 
   }
