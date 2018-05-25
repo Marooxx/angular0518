@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Product, TAB_PRODUCTS } from '../model/product';
+import { Product, TAB_PRODUCTS } from '../../model/product';
 
 @Component({
   selector: 'app-product-list',

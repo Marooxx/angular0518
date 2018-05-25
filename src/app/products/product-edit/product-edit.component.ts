@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Product, PRODUCT_TEST } from '../model/product';
+import { Product, PRODUCT_TEST } from '../../model/product';
 
 @Component({
   selector: 'app-product-edit',

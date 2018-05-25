@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 // Modèle perso
-import { Product, TAB_PRODUCTS } from '../model/product';
+import { Product, TAB_PRODUCTS } from '../../model/product';
 
 @Component({
   selector: 'app-product-show',
