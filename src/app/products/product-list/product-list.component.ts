@@ -20,7 +20,17 @@ export class ProductListComponent {
 
   constructor(productService: ProductService) {
     // Initialisation le tableau de produits
-    this.products = productService.getProducts();
+    this.products = [];
+    productService.getProducts().subscribe(data => this.products = data);
+
+    // Méthode classique
+    /*
+    productService.getProducts().subscribe(
+      (data) => {
+        this.products = data;
+      }
+    );
+    */
     // Si on veut un tableau vide
     // this.products = [];
     // this.products = null;
