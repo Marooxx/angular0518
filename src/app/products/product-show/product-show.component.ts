@@ -1,5 +1,5 @@
 // Modules d'angular
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, DoCheck } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 // Modèle perso
@@ -10,7 +10,7 @@ import { Product, TAB_PRODUCTS } from '../../model/product';
   templateUrl: './product-show.component.html',
   styleUrls: ['./product-show.component.css']
 })
-export class ProductShowComponent implements OnInit {
+export class ProductShowComponent implements OnInit, DoCheck {
 
   // Propriété entrante passée par le parent
   @Input()  private product: Product;
@@ -48,7 +48,19 @@ export class ProductShowComponent implements OnInit {
       if (!isNaN(id)) {
         this.getProduct(id);
       } else {
+        console.log('id invalide');
         this.router.navigate(['/not-found']);
+      }
+    }
+  }
+
+  ngDoCheck(): void {
+    const id: number = parseInt(this.route.snapshot.paramMap.get('id'), 10);
+    // On vérifie si l'id a changé
+    if (this.product && !this.isListParent) {
+      if (id !== this.product.id) {
+        // On doit recharger le nouveau produit
+        this.getProduct(id);
       }
     }
   }
@@ -84,6 +96,7 @@ export class ProductShowComponent implements OnInit {
     if (tableauTrie.length === 1) {
       this.product = tableauTrie[0];
     } else {
+      console.log('Produit non-trouvé');
       this.router.navigate(['/not-found']);
     }
 
