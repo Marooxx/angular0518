@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Product, TAB_PRODUCTS } from '../../model/product';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -17,9 +18,9 @@ export class ProductListComponent {
   private moyenne: number;
   private notes;
 
-  constructor() {
+  constructor(productService: ProductService) {
     // Initialisation le tableau de produits
-    this.products = TAB_PRODUCTS;
+    this.products = productService.getProducts();
     // Si on veut un tableau vide
     // this.products = [];
     // this.products = null;
