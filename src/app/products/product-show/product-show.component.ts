@@ -21,31 +21,35 @@ export class ProductShowComponent implements OnInit {
   private router: Router;
   private route: ActivatedRoute;
 
+  // Booléen pour savoir si le parent est ProductList ou si le component a été chargé par l'URL
+  @Input() private isListParent: boolean;
+
   constructor(
     route: ActivatedRoute,
     router: Router
   ) {
+    // Initialisation de l'événément pour le parent
+    this.voted = new EventEmitter<number>();
     // On stocke le router dans la classe
     this.router = router;
     // On stocke la route active dans la classe
     this.route = route;
-
-    // Initialisation de l'événément pour le parent
-    this.voted = new EventEmitter<number>();
   }
 
   /**
    * Fonction qui se déclenche lorsque le traitement du constructeur est terminé
    */
   ngOnInit(): void {
-    // Récupération de l'id passé en paramètre de la route
-    const id: number = parseInt(this.route.snapshot.paramMap.get('id'), 10);
-    console.log(`Le nombre correspondant à l'id passé dans la route est : ${id}`);
+    if (!this.isListParent) {
+      // Récupération de l'id passé en paramètre de la route
+      const id: number = parseInt(this.route.snapshot.paramMap.get('id'), 10);
+      console.log(`Le nombre correspondant à l'id passé dans la route est : ${id}`);
 
-    if (!isNaN(id)) {
-      this.getProduct(id);
-    } else {
-      this.router.navigate(['/not-found']);
+      if (!isNaN(id)) {
+        this.getProduct(id);
+      } else {
+        this.router.navigate(['/not-found']);
+      }
     }
   }
 

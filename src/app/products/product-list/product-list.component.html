@@ -15,7 +15,7 @@
     <p class="flow-text">Moyenne des votes : {{ moyenne }}</p>
 
     <app-product-show 
-        [product]="selectedProduct" (voted)="updateMoyenne($event)"
+        [product]="selectedProduct" [isListParent]="true" (voted)="updateMoyenne($event)"
     ></app-product-show>
 
 </section>
